@@ -43,7 +43,7 @@ def get_secret():
 
 app = flask.Flask(__name__)
 
-# TODO load TELEGRAM_TOKEN value from Secret Manager
+# load TELEGRAM_TOKEN value from Secret Manager
 TELEGRAM_TOKEN = get_secret()
 
 TELEGRAM_APP_URL = os.environ['TELEGRAM_APP_URL']
@@ -65,11 +65,13 @@ def webhook():
 def results():
     prediction_id = request.args.get('predictionId')
 
-    # TODO use the prediction_id to retrieve results from DynamoDB and send to the end-user
-
-    chat_id = ...
-    text_results = ...
-
+    # use the prediction_id to retrieve results from DynamoDB and send to the end-user
+    prediction_summary = bot.get_item_by_prediction_id(prediction_id)
+    logger.info(f'prediction_summary in results: {prediction_summary}')
+    logger.info(f'type: {type(prediction_summary)}')
+    chat_id = prediction_summary['chat_id']
+    logger.info(f'chat id: {chat_id}')
+    text_results = bot.handle_dynamo_message(prediction_summary)
     bot.send_text(chat_id, text_results)
     return 'Ok'
 
@@ -79,6 +81,10 @@ def load_test():
     req = request.get_json()
     bot.handle_message(req['message'])
     return 'Ok'
+
+@app.route('/health')
+def health_check():
+    return 'OK', 200
 
 
 if __name__ == "__main__":
