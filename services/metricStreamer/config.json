@@ -1,0 +1,15 @@
+{
+   "TargetValue": 5,
+   "CustomizedMetricSpecification": {
+      "MetricName": "BacklogPerInstance",
+      "Namespace": "KinanNamespace",
+      "Dimensions": [
+         {
+            "Name": "AutoScalingGroupName",
+            "Value": "kinan-yolo-ASG"
+         }
+      ],
+      "Statistic": "Average",
+      "Unit": "Count"
+   }
+}
