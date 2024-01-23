@@ -2,12 +2,16 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.git/
 .env
 .venv
 env/
 venv/
 ENV/
 .idea/
+
+.DS_Store
+services/.DS_Store
 
 kinan-key.pem
 yolo5/YOURPUBLIC.pem
