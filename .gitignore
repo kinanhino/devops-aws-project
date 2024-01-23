@@ -14,5 +14,5 @@ ENV/
 services/.DS_Store
 
 kinan-key.pem
-yolo5/YOURPUBLIC.pem
-polybot/aws-project/polybot/YOURPUBLIC.pem
+services/yolo5/YOURPUBLIC.pem
+services/polybot/aws-project/polybot/YOURPUBLIC.pem
